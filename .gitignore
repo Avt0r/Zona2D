@@ -37,5 +37,5 @@ Bundles/*
 
 Library/FailedAssetImports.txt
 */.vs/*
-/Logs
+Logs
 .idea/
