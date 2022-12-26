@@ -27,13 +27,13 @@ public class SVD : MonoBehaviour
 
     void Update()
     {
-        Ray ray = new Ray(transform.position, transform.up);
-        Debug.DrawRay(transform.position, transform.up * 100f, Color.red);
-        Physics.Raycast(ray);
+        // Ray ray = new Ray(transform.position, transform.up);
+        // Debug.DrawRay(transform.position, transform.up * 100f, Color.red);
+        // Physics.Raycast(ray);
 
         if(Input.GetMouseButton(0))
         {  
-            if(anim.GetBool("canShot"))
+            if(anim.GetBool("canShot") && HasBullets())
             { 
                 StartShot();
             }

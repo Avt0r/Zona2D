@@ -13,17 +13,19 @@ public class Player : MonoBehaviour
     [SerializeField]
     private Animator anim;
 
+    private void FixedUpdate() {
+        rb.MovePosition(rb.position + moveVector * speed * 0.01f);
+    }
+
     private void Update()
     {
         moveVector.x = Input.GetAxis("Horizontal");
         moveVector.y = Input.GetAxis("Vertical");
         if(Input.GetKeyDown(KeyCode.LeftShift)){
-            speed = 25;
-        }else if(Input.GetKeyUp(KeyCode.LeftShift)){
             speed = 10;
+        }else if(Input.GetKeyUp(KeyCode.LeftShift)){
+            speed = 5;
         }
-        rb.MovePosition(rb.position + moveVector * speed * Time.deltaTime);
-
         if(moveVector.x != 0 || moveVector.y != 0){
             anim.SetBool("stay",false);
         }else

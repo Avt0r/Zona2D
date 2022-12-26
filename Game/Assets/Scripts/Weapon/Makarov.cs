@@ -52,9 +52,14 @@ public class Makarov : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.GetComponent<AmmoBox>()){
-        ammoAllCurrent += 15;
+        FillAmmo(15);
         Destroy(other.gameObject);
         }
+    }
+
+    public void FillAmmo(int num)
+    {
+        ammoAllCurrent += ammoAllCurrent + num <= ammoFull? num : ammoFull - ammoAllCurrent ;
     }
 
     private void Reload(){

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Bullet : MonoBehaviour
 {
@@ -14,9 +15,15 @@ public class Bullet : MonoBehaviour
     private int damage;
     [SerializeField]
     private LayerMask whatIsSolid;
+    [SerializeField]
+    private Rigidbody2D rb;
+
+    private void Start() {
+        rb.AddForce(transform.up * speed * 0.1f);
+    }
 
     private void Update()
-    {
+    {        
         RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, transform.up, distance, whatIsSolid);
         if(hitInfo.collider != null)
         {
@@ -26,7 +33,6 @@ public class Bullet : MonoBehaviour
             }
             Destroy(gameObject);
         }
-        transform.Translate(Vector2.up * speed * Time.deltaTime);
         if(lifetime > 0)
         {
             lifetime --;
