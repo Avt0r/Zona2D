@@ -57,7 +57,7 @@ public class Makarov : MonoBehaviour
         }
     }
 
-    public void FillAmmo(int num)
+    private void FillAmmo(int num)
     {
         ammoAllCurrent += ammoAllCurrent + num <= ammoFull? num : ammoFull - ammoAllCurrent ;
     }

@@ -5,18 +5,26 @@ using UnityEngine.UI;
 
 public class SVD : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject bullet;
+    [SerializeField]
+    private Transform shotPoint;
+    [SerializeField]
+    private Transform ptransform;
+    [SerializeField]
+    private Animator anim;
 
-    public GameObject bullet;
-    public Transform shotPoint;
-    public Transform ptransform;
-    public Animator anim;
-
-    public int ammoMax;
-    public int ammoFull;
+    [SerializeField]
+    private int ammoMax;
+    [SerializeField]
+    private int ammoFull;
+    [SerializeField]
     private int ammoCurrent;
+    [SerializeField]
     private int ammoAllCurrent;
 
-    public int damage;
+    [SerializeField]
+    private int damage;
 
     [SerializeField] 
     private Text ammoCount;
@@ -25,7 +33,7 @@ public class SVD : MonoBehaviour
         ammoCurrent = ammoMax;
     }
 
-    void Update()
+    private void Update()
     {
         // Ray ray = new Ray(transform.position, transform.up);
         // Debug.DrawRay(transform.position, transform.up * 100f, Color.red);
@@ -48,12 +56,17 @@ public class SVD : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.GetComponent<AmmoBox>()){
-        ammoAllCurrent += 15;
+        FillAmmo(15);
         Destroy(other.gameObject);
         }
     }
 
-    public void Reload(){
+    private void FillAmmo(int num)
+    {
+        ammoAllCurrent += ammoAllCurrent + num <= ammoFull? num : ammoFull - ammoAllCurrent ;
+    }
+
+    private void Reload(){
         if(ammoCurrent == ammoMax || ammoAllCurrent <= 0){
             return;
         }
@@ -62,23 +75,23 @@ public class SVD : MonoBehaviour
         ammoAllCurrent -=reloadNumber;
     }
 
-    public bool HasBullets(){
+    private bool HasBullets(){
         return ammoCurrent > 0;
     }
 
-    public void Wait()
+    private void Wait()
     {
         Debug.Log("wait");
         anim.SetBool("canShot",true);
     }
 
-    public void StartShot()
+    private void StartShot()
     {
         Debug.Log("shot");
         anim.SetBool("canShot",false);
     }
 
-    public void MakeShot()
+    private void MakeShot()
     {
         Bullet b = bullet.GetComponent<Bullet>();
         b.setDamage(damage);
@@ -86,7 +99,7 @@ public class SVD : MonoBehaviour
         ammoCurrent--;
     }
 
-    public void LogShot()
+    private void LogShot()
     {
         Debug.Log("Log shot");
     }
