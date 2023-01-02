@@ -35,10 +35,6 @@ public class SVD : MonoBehaviour
 
     private void Update()
     {
-        // Ray ray = new Ray(transform.position, transform.up);
-        // Debug.DrawRay(transform.position, transform.up * 100f, Color.red);
-        // Physics.Raycast(ray);
-
         if(Input.GetMouseButton(0))
         {  
             if(anim.GetBool("canShot") && HasBullets())
@@ -55,10 +51,15 @@ public class SVD : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if(other.GetComponent<AmmoBox>()){
+        if(other.GetComponent<AmmoBox>() && !IfAmmoIsFull()){
         FillAmmo(15);
         Destroy(other.gameObject);
         }
+    }
+
+    private bool IfAmmoIsFull()
+    {
+        return ammoAllCurrent == ammoFull;
     }
 
     private void FillAmmo(int num)
@@ -81,13 +82,11 @@ public class SVD : MonoBehaviour
 
     private void Wait()
     {
-        Debug.Log("wait");
         anim.SetBool("canShot",true);
     }
 
     private void StartShot()
     {
-        Debug.Log("shot");
         anim.SetBool("canShot",false);
     }
 
@@ -97,10 +96,5 @@ public class SVD : MonoBehaviour
         b.setDamage(damage);
         Instantiate(b, shotPoint.position, transform.rotation);
         ammoCurrent--;
-    }
-
-    private void LogShot()
-    {
-        Debug.Log("Log shot");
     }
 }

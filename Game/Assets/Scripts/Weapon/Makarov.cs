@@ -51,10 +51,15 @@ public class Makarov : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if(other.GetComponent<AmmoBox>()){
+        if(other.GetComponent<AmmoBox>() && !IfAmmoIsFull()){
         FillAmmo(15);
         Destroy(other.gameObject);
         }
+    }
+
+    private bool IfAmmoIsFull()
+    {
+        return ammoAllCurrent == ammoFull;
     }
 
     private void FillAmmo(int num)
@@ -77,13 +82,11 @@ public class Makarov : MonoBehaviour
 
     private void Wait()
     {
-        Debug.Log("wait");
         anim.SetBool("canShot",true);
     }
 
     private void StartShot()
     {
-        Debug.Log("shot");
         anim.SetBool("canShot",false);
     }
 
@@ -93,10 +96,5 @@ public class Makarov : MonoBehaviour
         b.setDamage(damage);
         Instantiate(bullet, shotPoint.position, transform.rotation);
         ammoCurrent--;
-    }
-
-    private void LogShot()
-    {
-        Debug.Log("Log shot");
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     [SerializeField]
-    private int healtMax;
+    private int healthMax;
     [SerializeField]
     private int health;
     [SerializeField]
@@ -29,6 +29,11 @@ public class Player : MonoBehaviour
     private Image staminaBar;
     [SerializeField]
     private Image healthBar;
+
+    private void Start() {
+        healthBar.fillAmount = ((float) health) / healthMax;
+        staminaBar.fillAmount = ((float) stamina) / staminaMax;
+    }
 
     private void FixedUpdate() {
         rb.MovePosition(rb.position + moveVector * speedCurrent * 0.01f);
@@ -65,7 +70,12 @@ public class Player : MonoBehaviour
             transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         }
 
-        healthBar.fillAmount = ((float) health) / healtMax;
+        if(Input.GetKeyDown(KeyCode.I)){
+            ChangeHealth(10);
+        }
+        if(Input.GetKeyDown(KeyCode.O)){
+            ChangeHealth(-10);
+        }
         staminaBar.fillAmount = ((float) stamina) / staminaMax;
     }
 
@@ -76,4 +86,12 @@ public class Player : MonoBehaviour
     private bool HasStamina(){
         return stamina > 0;
     }
+
+    public void ChangeHealth(int diff)
+    {
+        health += health + diff > healthMax? healthMax - health: (health + diff < 0? -health : diff);
+        healthBar.fillAmount = ((float) health) / healthMax;
+    }
+
+    private void Die(){}
 }

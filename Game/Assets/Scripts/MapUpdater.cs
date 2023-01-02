@@ -10,7 +10,6 @@ public class MapUpdater : MonoBehaviour
     private GameObject anchorMine;
 
     private void OnTriggerEnter2D(Collider2D other) {
-        Debug.Log("Collise");
         if (other.GetComponent<Player>())
         {
             anchorCenter.transform.position = anchorMine.transform.position;
