@@ -10,28 +10,39 @@ public class HandAttack : MonoBehaviour
     private Animator anim;
     [SerializeField]
     private int attackDelay;
+    [SerializeField]
+    private Player player;
+    
+    private void Start() {
+        player = FindObjectOfType<Player>();
+    }
 
     private void OnTriggerEnter2D(Collider2D other) 
-    {
-        if(anim.GetBool("dealDamage")){
-            other.GetComponent<Player>().ChangeHealth(-damage);
-            anim.SetBool("dealDamage", false);
-        }
-        if(other.GetComponent<Player>())
-        {   
-            anim.SetBool("canAttack",true);
-            StartCoroutine(Delay());
+    {   
+        if(other.gameObject.tag == "Player")
+        {
+            anim.SetBool("canAttack", true);
+            
         }
     }
     
+    private void OnTriggerExit2D(Collider2D other) {
+        if(other.gameObject.tag == "Player")
+        {
+            anim.SetBool("canAttack", false);
+        }
+    }
+
     private IEnumerator Delay()
     {            
         yield return new WaitForSeconds(attackDelay);
-        anim.SetBool("canAttack", false);
+        anim.SetBool("canAttack", true);
     }
 
     private void DealDamage()
     {
-        anim.SetBool("dealDamage", true);
+        player.ChangeHealth(-damage);
+        anim.SetBool("canAttack", false);
+        StartCoroutine(Delay());
     }
 }

@@ -94,4 +94,17 @@ public class Player : MonoBehaviour
     }
 
     private void Die(){}
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if(other.GetComponent<Health>() && !IsFullHealth())
+        {
+            ChangeHealth(10);
+            Destroy(other.gameObject);
+        }
+    }
+
+    private bool IsFullHealth()
+    {
+        return health == healthMax;
+    }
 }
