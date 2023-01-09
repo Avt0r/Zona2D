@@ -317,7 +317,7 @@ MonoBehaviour:
   dropItems:
   - {fileID: 249746915346359424, guid: 1daf0c0d3d6e5524d9356214abd71e8b, type: 3}
   - {fileID: 4682521413391593719, guid: ab8d869fdcaf47a4e8cd2b2f91d21b46, type: 3}
-  dropChance: 20
+  dropChance: 35
 --- !u!50 &2301130958338519304
 Rigidbody2D:
   serializedVersion: 4
@@ -517,6 +517,7 @@ MonoBehaviour:
   damage: 5
   anim: {fileID: 4808902536988853623}
   attackDelay: 3
+  player: {fileID: 0}
 --- !u!61 &8648571841876142128
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -47,7 +47,7 @@ public class SVD : MonoBehaviour
             Reload();
         }
 
-        ammoCount.text = ammoCurrent + "/" + ammoMax + "  " + ammoAllCurrent + "/" + ammoFull;
+        ammoCount.text = ammoCurrent + "/" + ammoMax + "\n" + ammoAllCurrent + "/" + ammoFull;
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
