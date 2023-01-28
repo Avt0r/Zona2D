@@ -6,15 +6,15 @@ public class WeaponSwitch : MonoBehaviour
 {
     [SerializeField]
     private int weaponSwitch = 0;
-    // Start is called before the first frame update
+    
     private void Start()
     {
         SelectWeapon();
     }
 
-    // Update is called once per frame
     private void Update()
     {
+        if(!PauseMenu.GAMEISPAUSED){
         int currentWeapon = weaponSwitch;
 
         if(Input.GetAxis("Mouse ScrollWheel") > 0f)
@@ -59,6 +59,7 @@ public class WeaponSwitch : MonoBehaviour
         if(currentWeapon != weaponSwitch)
         {
             SelectWeapon();
+        }
         }
     }
 

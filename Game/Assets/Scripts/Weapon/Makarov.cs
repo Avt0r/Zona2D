@@ -10,8 +10,6 @@ public class Makarov : MonoBehaviour
     [SerializeField]
     private Transform shotPoint;
     [SerializeField]
-    private Transform ptransform;
-    [SerializeField]
     private Animator anim;
 
     [SerializeField]
@@ -29,12 +27,19 @@ public class Makarov : MonoBehaviour
     [SerializeField] 
     private Text ammoCount;
 
+    [SerializeField]
+    private Reload reload;
+
+    [SerializeField]
+    private float delay;
+
     private void Start() {
         ammoCurrent = ammoMax;    
     }
 
     private void Update()
     {
+        if(!PauseMenu.GAMEISPAUSED){
         if(Input.GetMouseButton(0))
         {  
             if(anim.GetBool("canShot") && HasBullets())
@@ -44,10 +49,11 @@ public class Makarov : MonoBehaviour
         }
 
         if(Input.GetKeyDown(KeyCode.R)){
-            Reload();
+            ReloadStart();
         }
         
         ammoCount.text = ammoCurrent + "/" + ammoMax + "\n" + ammoAllCurrent + "/" + ammoFull;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
@@ -67,10 +73,29 @@ public class Makarov : MonoBehaviour
         ammoAllCurrent += ammoAllCurrent + num <= ammoFull? num : ammoFull - ammoAllCurrent ;
     }
 
-    private void Reload(){
+    private void ReloadStart(){
         if(ammoCurrent == ammoMax || ammoAllCurrent <= 0){
             return;
         }
+        reload.ReloadStart(delay);
+        StartCoroutine(WaitForFinishReload());
+    }
+
+    private IEnumerator WaitForFinishReload()
+    {
+        while(true)
+        {
+            yield return null;
+            if(reload.IsReloadFinished())
+            {
+                ReloadFinish(); 
+                break;
+            }
+        }
+    }
+
+    private void ReloadFinish()
+    {
         int reloadNumber = ammoAllCurrent - (ammoMax - ammoCurrent) >= 0? ammoMax - ammoCurrent : ammoAllCurrent;
         ammoCurrent += reloadNumber;
         ammoAllCurrent -=reloadNumber;

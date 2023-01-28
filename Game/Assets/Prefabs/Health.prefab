@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 7642001513331307014}
   - component: {fileID: 5067493585961322057}
   - component: {fileID: 7432277105779167794}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Health
-  m_TagString: Untagged
+  m_TagString: HP
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,6 +98,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0176856cc723cc845ad643e896a3e5af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destroyDelay: 5
+  dropChance: 15
+  drop: {fileID: 249746915346359424}
 --- !u!61 &7432277105779167794
 BoxCollider2D:
   m_ObjectHideFlags: 0

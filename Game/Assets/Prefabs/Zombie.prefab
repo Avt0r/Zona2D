@@ -129,7 +129,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2301130959330291349}
   m_Father: {fileID: 2301130957903393715}
@@ -307,7 +307,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healtMax: 20
   health: 20
-  speed: 1
+  speed: 2
+  XPCount: 4
   target: {fileID: 0}
   rb: {fileID: 2301130958338519304}
   moveVector: {x: 0, y: 0}
@@ -315,9 +316,12 @@ MonoBehaviour:
   healthLowBar: {fileID: 2301130959330291348}
   canvas: {fileID: 2301130957903393712}
   dropItems:
-  - {fileID: 249746915346359424, guid: 1daf0c0d3d6e5524d9356214abd71e8b, type: 3}
-  - {fileID: 4682521413391593719, guid: ab8d869fdcaf47a4e8cd2b2f91d21b46, type: 3}
-  dropChance: 35
+  - {fileID: 5067493585961322057, guid: 1daf0c0d3d6e5524d9356214abd71e8b, type: 3}
+  - {fileID: 4682521413391593716, guid: ab8d869fdcaf47a4e8cd2b2f91d21b46, type: 3}
+  XPObject: {fileID: 237695697706846413, guid: 9b90527af07de634e9a5f4188ba9da4e, type: 3}
+  dropChance: 30
+  minDistance: 1
+  deathEffect: {fileID: 3216144496861944744, guid: c1fb24e9e4553294c9e308e7b8d6114f, type: 3}
 --- !u!50 &2301130958338519304
 Rigidbody2D:
   serializedVersion: 4
@@ -367,7 +371,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.00012278557}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2301130958040808235}
   m_RootOrder: 0
@@ -518,6 +522,7 @@ MonoBehaviour:
   anim: {fileID: 4808902536988853623}
   attackDelay: 3
   player: {fileID: 0}
+  inRadius: 0
 --- !u!61 &8648571841876142128
 BoxCollider2D:
   m_ObjectHideFlags: 0

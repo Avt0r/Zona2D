@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class HandAttack : MonoBehaviour
 {
+
     [SerializeField]
     private int damage;
     [SerializeField]
@@ -12,7 +13,9 @@ public class HandAttack : MonoBehaviour
     private int attackDelay;
     [SerializeField]
     private Player player;
-    
+    [SerializeField]
+    private bool inRadius;
+
     private void Start() {
         player = FindObjectOfType<Player>();
     }
@@ -21,28 +24,43 @@ public class HandAttack : MonoBehaviour
     {   
         if(other.gameObject.tag == "Player")
         {
-            anim.SetBool("canAttack", true);
-            
+            inRadius = true;
+            StartCoroutine(StartAttacking());
         }
+    }
+
+    private IEnumerator StartAttacking()
+    {
+        yield return new WaitForSeconds(0.5f);
+        anim.Play("HandAttack");
     }
     
     private void OnTriggerExit2D(Collider2D other) {
         if(other.gameObject.tag == "Player")
         {
-            anim.SetBool("canAttack", false);
+            inRadius = false;
+            Idle();
+            StopCoroutine(Delay());
         }
     }
 
     private IEnumerator Delay()
     {            
         yield return new WaitForSeconds(attackDelay);
-        anim.SetBool("canAttack", true);
+        if(inRadius)
+        anim.Play("HandAttack");
     }
 
     private void DealDamage()
     {
+        if(inRadius){
         player.ChangeHealth(-damage);
-        anim.SetBool("canAttack", false);
         StartCoroutine(Delay());
+        }
+    }
+
+    private void Idle()
+    {
+        anim.Play("HandIdle");
     }
 }

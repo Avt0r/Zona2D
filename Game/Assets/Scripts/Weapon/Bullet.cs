@@ -10,35 +10,27 @@ public class Bullet : MonoBehaviour
     [SerializeField]
     private float lifetime;
     [SerializeField]
-    private float distance;
-    [SerializeField]
     private int damage;
     [SerializeField]
-    private LayerMask whatIsSolid;
-    [SerializeField]
     private Rigidbody2D rb;
+    [SerializeField]
+    private int penetration = 1;
 
     private void Start() {
-        rb.AddForce(transform.up * speed * 0.1f);
+        rb.AddForce(transform.up * speed, ForceMode2D.Impulse);
+        Destroy(gameObject, lifetime);
     }
 
-    private void Update()
-    {        
-        RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, transform.up, distance, whatIsSolid);
-        if(hitInfo.collider != null)
+    private void OnCollisionEnter2D(Collision2D other) {
+        if(other.gameObject.tag == "Enemy")
         {
-            if (hitInfo.collider.CompareTag("Enemy"))
-            {
-                hitInfo.collider.GetComponent<Enemy>().TakeDamage(damage);
+            if(penetration > 0){
+                other.gameObject.GetComponent<Enemy>().TakeDamage(damage);
+                penetration--;
             }
-            Destroy(gameObject);
-        }
-        if(lifetime > 0)
-        {
-            lifetime --;
-        }else
-        {
-            Destroy(gameObject);
+            if(penetration <= 0){
+                Destroy(gameObject);    
+            }
         }
     }
 

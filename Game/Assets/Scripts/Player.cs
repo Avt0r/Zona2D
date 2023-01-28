@@ -6,22 +6,28 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     [SerializeField]
-    private int healthMax;
+    private int level;
     [SerializeField]
-    private int health;
+    private int XPMax;
+    [SerializeField]
+    private int XP;
+    [SerializeField]
+    private int HPMax;
+    [SerializeField]
+    private int HP;
     [SerializeField]
     private int staminaMax;
     [SerializeField]
     private float stamina; 
     [SerializeField]
-    private int speed = 10;
+    private int speed = 4;
     [SerializeField]
-    private int speedRun = 10;
-    [SerializeField]
-    private int speedCurrent;
+    private float speedRun = 1.5f;
+    [SerializeField, HideInInspector]
+    private float speedCurrent;
     [SerializeField]
     private Rigidbody2D rb;
-    [SerializeField]
+    [SerializeField, HideInInspector]
     private Vector2 moveVector;
     [SerializeField]
     private Animator anim;
@@ -29,28 +35,32 @@ public class Player : MonoBehaviour
     private Image staminaBar;
     [SerializeField]
     private Image healthBar;
+    [SerializeField]
+    private Image XPBar;
+    [SerializeField]
+    private GameObject deathScreen;
 
     private void Start() {
-        healthBar.fillAmount = ((float) health) / healthMax;
+        healthBar.fillAmount = ((float) HP) / HPMax;
         staminaBar.fillAmount = ((float) stamina) / staminaMax;
-    }
-
-    private void FixedUpdate() {
-        rb.MovePosition(rb.position + moveVector * speedCurrent * 0.01f);
+        XPBar.fillAmount = ((float) XP) / XPMax;
     }
 
     private void Update()
     {
-       
+        if(!PauseMenu.GAMEISPAUSED){
         moveVector.x = Input.GetAxis("Horizontal");
         moveVector.y = Input.GetAxis("Vertical");
 
+        rb.velocity = moveVector.normalized * speedCurrent;
+
         if(Input.GetKey(KeyCode.LeftShift) && HasStamina()){
-            speedCurrent = speed + speedRun;
+            speedCurrent = speed * speedRun;
             stamina--;
         }else {
             speedCurrent = speed;
-            if(stamina < staminaMax) stamina+= 0.3f;
+            if(stamina < staminaMax)
+            stamina+= 0.3f;
         }
 
         if(moveVector.x != 0 || moveVector.y != 0){
@@ -70,17 +80,19 @@ public class Player : MonoBehaviour
             transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         }
 
-        if(Input.GetKeyDown(KeyCode.I)){
-            ChangeHealth(10);
+        UpdateBars();
         }
-        if(Input.GetKeyDown(KeyCode.O)){
-            ChangeHealth(-10);
-        }
+    }
+
+    private void UpdateBars()
+    {
         staminaBar.fillAmount = ((float) stamina) / staminaMax;
+        healthBar.fillAmount = ((float) HP) / HPMax;
+        XPBar.fillAmount = ((float) XP) / XPMax; 
     }
 
     private bool IsAlive(){
-        return health > 0;
+        return HP > 0;
     }
 
     private bool HasStamina(){
@@ -89,11 +101,24 @@ public class Player : MonoBehaviour
 
     public void ChangeHealth(int diff)
     {
-        health += health + diff > healthMax? healthMax - health: (health + diff < 0? -health : diff);
-        healthBar.fillAmount = ((float) health) / healthMax;
+        HP += HP + diff > HPMax? HPMax - HP: (HP + diff < 0? -HP : diff);
+        if(HP <= 0)
+        {
+            Die();
+        }
     }
 
-    private void Die(){}
+    private void Die()
+    {
+        anim.Play("PlayerDead");
+        speed = 0;
+    }
+
+    private void ShowDeathScreen()
+    {
+       deathScreen.SetActive(true); 
+       deathScreen.GetComponent<DeathScreen>().StopTime();
+    }
 
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.GetComponent<Health>() && !IsFullHealth())
@@ -101,10 +126,31 @@ public class Player : MonoBehaviour
             ChangeHealth(10);
             Destroy(other.gameObject);
         }
+        if(other.GetComponent<XP>())
+        {
+            GetXP(other.GetComponent<XP>().GetCount());
+            Destroy(other.gameObject);
+        }
+    }
+
+    private void GetXP(int x)
+    {
+        XP+=x;
+        if(XP >= XPMax)
+        {
+            LevelUp();
+        }
+    }
+
+    private void LevelUp()
+    {
+        level++;
+        XP = XPMax - XP;
+        XPMax *= 2;
     }
 
     private bool IsFullHealth()
     {
-        return health == healthMax;
+        return HP == HPMax;
     }
 }

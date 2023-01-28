@@ -13,44 +13,68 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private float speed;
     [SerializeField]
+    private int XPCount;
+    [SerializeField, HideInInspector]
     private Transform target;
     [SerializeField]
     private Rigidbody2D rb;
-    [SerializeField]
+    [SerializeField, HideInInspector]
     private Vector2 moveVector; 
     [SerializeField]
     private Image healthBar;
     [SerializeField]
     private Image healthLowBar;
-    [SerializeField]
+    [SerializeField, HideInInspector]
     private Canvas canvas;
     [SerializeField]
-    private GameObject [] dropItems;
+    private Drop [] dropItems;
+    [SerializeField]
+    private XP XPObject;
     [SerializeField]
     private int dropChance;
-
+    [SerializeField]
+    private float minDistance;
+    [SerializeField]
+    private GameObject deathEffect;
+    
+    
     private void Start() {
        GameObject player = GameObject.FindGameObjectWithTag("Player");
        target = player.transform;
        canvas.worldCamera = Camera.main;
        HealthBarHide();
+       XPObject.SetCount(XPCount);
     }
 
     private void FixedUpdate() { 
         moveVector.x = target.position.x - transform.position.x;
         moveVector.y = target.position.y - transform.position.y;
-    
-        Scale();
 
-        rb.MovePosition(rb.position + moveVector * speed * 0.01f);
+        Scale();
+        StopWhenNearToPlayer();
+    }
+
+    private void StopWhenNearToPlayer()
+    {
+        if(moveVector.magnitude > minDistance)
+        {
+        rb.velocity = moveVector.normalized * speed;
+        }else
+        {
+            rb.velocity = new Vector2(0,0);
+        }
     }
 
     private void Scale(){
-        if(moveVector.x > 0)
+        if(moveVector.x > 0.01f)
         {
+            healthBar.transform.localScale = new Vector3(Mathf.Abs(healthBar.transform.localScale.x), healthBar.transform.localScale.y, healthBar.transform.localScale.z);
+            healthLowBar.transform.localScale = new Vector3(Mathf.Abs(healthLowBar.transform.localScale.x), healthLowBar.transform.localScale.y, healthLowBar.transform.localScale.z);  
             transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
-        } else if(moveVector.x < 0)
+        } else if(moveVector.x < 0.01f)
         {
+            healthBar.transform.localScale = new Vector3(-Mathf.Abs(healthBar.transform.localScale.x), healthBar.transform.localScale.y, healthBar.transform.localScale.z);
+            healthLowBar.transform.localScale = new Vector3(-Mathf.Abs(healthLowBar.transform.localScale.x), healthLowBar.transform.localScale.y, healthLowBar.transform.localScale.z);    
             transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         } 
     }
@@ -68,14 +92,16 @@ public class Enemy : MonoBehaviour
 
     private void Die(){
         DropSpawn();
+        Instantiate(deathEffect, transform.position, transform.rotation);
         Destroy(gameObject);
     }
 
     private void DropSpawn(){
+        Instantiate(XPObject, transform.position, Quaternion.identity);
         if(Random.Range(0,101)<=dropChance)
-        {
-            int itemId = Random.Range(0,dropItems.Length);
-            Instantiate(dropItems[itemId], transform.position, Quaternion.identity);
+        {   
+            Drop drop = Drop.ReturnDropFromArray(dropItems);
+            Instantiate(drop.ReturnDropObject(), transform.position, Quaternion.identity);
         }
     }
 
