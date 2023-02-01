@@ -21,13 +21,16 @@ public class Sword : MonoBehaviour
     private Text ammoCount;
 
     private void Update() { 
-        ammoCount.text = "Inf";  
         if(reloaded) 
             if(Input.GetMouseButton(0))
             {
                 anim.Play("Attack"); 
                 reloaded = false; 
             }
+    }
+
+    private void OnEnable() {
+        WeaponManager.EDITINFOABOUTAMMO?.Invoke("Inf");
     }
 
     private void Reload()

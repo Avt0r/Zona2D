@@ -39,11 +39,14 @@ public class Player : MonoBehaviour
     private Image XPBar;
     [SerializeField]
     private GameObject deathScreen;
+    [SerializeField]
+    private Text levelText;
 
     private void Start() {
         healthBar.fillAmount = ((float) HP) / HPMax;
         staminaBar.fillAmount = ((float) stamina) / staminaMax;
         XPBar.fillAmount = ((float) XP) / XPMax;
+        levelText.text = level + "";
     }
 
     private void Update()
@@ -147,6 +150,7 @@ public class Player : MonoBehaviour
         level++;
         XP = XPMax - XP;
         XPMax *= 2;
+        levelText.text = level + "";
     }
 
     private bool IsFullHealth()

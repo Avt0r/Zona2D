@@ -81,6 +81,10 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        if(health <=0 )
+        {
+            return;
+        }
         HealthBarShow();
         health -= damage;
         healthBar.fillAmount = ((float)health) / healtMax;

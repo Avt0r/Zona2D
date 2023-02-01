@@ -12,11 +12,13 @@ public class DeathScreen : MonoBehaviour
 
     public void StopTime()
     {
+        PauseMenu.GAMEISPAUSED = true;
         Time.timeScale = 0f;
     }
 
     public void ResumeTime()
     {
+        PauseMenu.GAMEISPAUSED = false;
         Time.timeScale = 1f;
     }
 
