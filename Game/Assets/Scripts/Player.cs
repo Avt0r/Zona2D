@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField]
-    private int level;
+    [SerializeField, HideInInspector]
+    private int level = 1;
     [SerializeField]
     private int XPMax;
     [SerializeField]
@@ -20,9 +20,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float stamina; 
     [SerializeField]
-    private int speed = 4;
+    private int speed;
     [SerializeField]
-    private float speedRun = 1.5f;
+    private float speedRun;
     [SerializeField, HideInInspector]
     private float speedCurrent;
     [SerializeField]
@@ -49,13 +49,15 @@ public class Player : MonoBehaviour
         levelText.text = level + "";
     }
 
+    private void FixedUpdate() {
+         rb.velocity = moveVector.normalized * speedCurrent;
+    }
+
     private void Update()
     {
         if(!PauseMenu.GAMEISPAUSED){
         moveVector.x = Input.GetAxis("Horizontal");
         moveVector.y = Input.GetAxis("Vertical");
-
-        rb.velocity = moveVector.normalized * speedCurrent;
 
         if(Input.GetKey(KeyCode.LeftShift) && HasStamina()){
             speedCurrent = speed * speedRun;
@@ -132,6 +134,11 @@ public class Player : MonoBehaviour
         if(other.GetComponent<XP>())
         {
             GetXP(other.GetComponent<XP>().GetCount());
+            Destroy(other.gameObject);
+        }
+        if(other.gameObject.CompareTag("Ammo"))
+        {
+            WeaponManager.PICKAMMO?.Invoke();
             Destroy(other.gameObject);
         }
     }
