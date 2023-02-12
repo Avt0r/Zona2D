@@ -685,16 +685,16 @@ RectTransform:
   m_GameObject: {fileID: 391956575}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1830401065}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 425.99997}
-  m_SizeDelta: {x: 216.6, y: 90.09}
+  m_AnchoredPosition: {x: 0, y: 441}
+  m_SizeDelta: {x: 605.67, y: 181.82}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &391956577
 MonoBehaviour:
@@ -718,11 +718,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 80
+    m_FontSize: 150
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 8
-    m_MaxSize: 80
+    m_MinSize: 1
+    m_MaxSize: 150
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -1571,11 +1571,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 60
+    m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 6
-    m_MaxSize: 60
+    m_MaxSize: 300
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -2461,7 +2461,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1173562481
 Transform:
   m_ObjectHideFlags: 0
@@ -2771,9 +2771,7 @@ GameObject:
   - component: {fileID: 1360173914}
   - component: {fileID: 1360173915}
   - component: {fileID: 1360173916}
-  - component: {fileID: 1360173920}
   - component: {fileID: 1360173921}
-  - component: {fileID: 1360173919}
   - component: {fileID: 1360173918}
   m_Layer: 0
   m_Name: Weapon
@@ -2811,7 +2809,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponSwitch: 0
-  audio: {fileID: 1360173918}
   cd: 0
 --- !u!114 &1360173916
 MonoBehaviour:
@@ -2922,38 +2919,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!58 &1360173919
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1360173913}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -1.8895819, y: 0}
-  serializedVersion: 2
-  m_Radius: 6.1407614
---- !u!114 &1360173920
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1360173913}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 353b7bf6aafe00949bfac782051e7afd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weapons:
-  - {fileID: 4300153942030845478, guid: 80f8b9d8fc0b52544be8aee14d809b73, type: 3}
-  - {fileID: 5324024026501268615, guid: 27ce121fad0bf6244ac6ea89d06d5cf3, type: 3}
-  - {fileID: 183223118863084496, guid: 663c4ced988c41b408cc4cd132e5c912, type: 3}
 --- !u!114 &1360173921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2968,7 +2933,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ammoInfo: {fileID: 1952635663}
   reload: {fileID: 1912492030}
-  collider: {fileID: 1360173919}
+  weapons:
+  - {fileID: 183223118863084496, guid: 663c4ced988c41b408cc4cd132e5c912, type: 3}
+  - {fileID: 4300153942030845478, guid: 80f8b9d8fc0b52544be8aee14d809b73, type: 3}
+  - {fileID: 5324024026501268615, guid: 27ce121fad0bf6244ac6ea89d06d5cf3, type: 3}
 --- !u!1 &1404277456
 GameObject:
   m_ObjectHideFlags: 0
@@ -3027,7 +2995,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4c742ed930a8dd44f897096cbf924719, type: 3}
+  m_Sprite: {fileID: -1457506228, guid: 509f397dd5bb1c24bae59ecdb215fd2e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3105,10 +3073,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 60
+    m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 6
+    m_MinSize: 5
     m_MaxSize: 60
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -4141,7 +4109,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 45
+    m_FontSize: 100
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -4170,16 +4138,16 @@ RectTransform:
   m_GameObject: {fileID: 1952635662}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1.1255094}
-  m_LocalScale: {x: 1.1255001, y: 1.1255001, z: 1.1255001}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1253746174}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 222, y: -62}
-  m_SizeDelta: {x: 319.49, y: 162.62}
+  m_AnchoredPosition: {x: 137.2, y: -38.454}
+  m_SizeDelta: {x: 377.22, y: 279.91}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2006659442
 GameObject:
@@ -4419,16 +4387,16 @@ RectTransform:
   m_GameObject: {fileID: 2052088918}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1830401065}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 762, y: 426}
-  m_SizeDelta: {x: 242.15, y: 102}
+  m_AnchoredPosition: {x: 736.42, y: 434.45}
+  m_SizeDelta: {x: 447.15, y: 194.93}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2052088920
 MonoBehaviour:
@@ -4467,11 +4435,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 80
+    m_FontSize: 150
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 80
+    m_MaxSize: 150
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1

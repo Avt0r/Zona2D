@@ -10,8 +10,8 @@ public class AD : MonoBehaviour
         
     }
 
-    public void ShowAD()
-    {
-        Application.ExternalCall("ShowAD");
-    }
+    // public void ShowAD()
+    // {
+    //     Application.ExternalCall("ShowAD");
+    // }
 }

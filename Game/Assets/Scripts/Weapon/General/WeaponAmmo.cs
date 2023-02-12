@@ -14,8 +14,8 @@ public class WeaponAmmo : MonoBehaviour
     private int ammoAllCurrent;
     [SerializeField]
     private float reloadDelay;
-    [SerializeField]
-    private bool onReload;
+    [SerializeField, HideInInspector]
+    private bool onReload = false;
 
     private void Start()
     {
@@ -37,13 +37,19 @@ public class WeaponAmmo : MonoBehaviour
     private void Update()
     {
         if(!PauseMenu.GAMEISPAUSED){
-            if(Input.GetKeyDown(KeyCode.R)){
-                if(ammoInClipCurrent < ammoInClip && ammoAllCurrent > 0)
-                {
-                    onReload = true;
-                    WeaponManager.RELOAD?.Invoke(reloadDelay);
-                    StartCoroutine(WaitForReloadDelay());
-                }
+            CheckForReload();
+        }
+    }
+
+    private void CheckForReload()
+    {
+        if(Input.GetKeyDown(KeyCode.R)){
+            if(ammoInClipCurrent < ammoInClip && ammoAllCurrent > 0)
+            {
+                GetComponent<WeaponAudio>().PlayReload();
+                onReload = true;
+                WeaponManager.RELOAD?.Invoke(reloadDelay);
+                StartCoroutine(WaitForReloadDelay());
             }
         }
     }
@@ -51,7 +57,7 @@ public class WeaponAmmo : MonoBehaviour
     public void FillAmmo(int count)
     {
         ammoAllCurrent += ammoAllCurrent + count <= ammoAll ? count : ammoAll - ammoAllCurrent;
-        if(gameObject.activeSelf)
+        if(gameObject.activeInHierarchy)
             SendAmmoInfo();
     }
 

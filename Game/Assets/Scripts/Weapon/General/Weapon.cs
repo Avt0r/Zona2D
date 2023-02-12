@@ -10,19 +10,37 @@ public class Weapon : MonoBehaviour
     [SerializeField]
     private Reload reload;
     [SerializeField]
-    private CircleCollider2D collider;
+    private GameObject [] weapons;
+
+    private void Start() {
+        InitializeWeapons();
+    }
+
+    private void InitializeWeapons()
+    {
+        for(int i = 0; i < weapons.Length; i++)
+        {
+            Instantiate(weapons[i], transform.position, transform.rotation).transform.SetParent(transform);
+        }
+        
+        foreach(Transform weapon in transform) {
+            weapon.gameObject.SetActive(false);   
+        }
+
+        transform.GetChild(0).gameObject.SetActive(true);
+    }
 
     private void OnEnable() {
-        WeaponManager.EDITINFOABOUTAMMO += AmmoUnfoUpdate;
+        WeaponManager.EDITINFOABOUTAMMO += AmmoInfoUpdate;
         WeaponManager.RELOAD += ReloadWeapon;
     }
 
     private void OnDisable() {
-        WeaponManager.EDITINFOABOUTAMMO -= AmmoUnfoUpdate;
+        WeaponManager.EDITINFOABOUTAMMO -= AmmoInfoUpdate;
         WeaponManager.RELOAD -= ReloadWeapon;
     }
 
-    private void AmmoUnfoUpdate(string text)
+    private void AmmoInfoUpdate(string text)
     {
         ammoInfo.text = text;
     }
@@ -32,11 +50,4 @@ public class Weapon : MonoBehaviour
         reload.ReloadStart(delay);
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        if(other.gameObject.tag == "Ammo")
-        {
-            WeaponManager.PICKAMMO?.Invoke();
-            Destroy(other.gameObject);
-        }
-    }
 }

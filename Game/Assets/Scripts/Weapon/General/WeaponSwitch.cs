@@ -6,8 +6,6 @@ public class WeaponSwitch : MonoBehaviour
 {
     [SerializeField, HideInInspector]
     private int weaponSwitch = 0;
-    [SerializeField]
-    private AudioSource audio;
     [SerializeField, HideInInspector]
     private bool cd;
 
@@ -65,7 +63,7 @@ public class WeaponSwitch : MonoBehaviour
 
     private void PlaySound()
     {
-        audio.Play();
+        GetComponent<AudioSource>().Play();
     }
 
     private void SelectWeapon()
