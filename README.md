@@ -8,5 +8,6 @@
  &nbsp Reload - R;<br>
  &nbsp Shoot - Left mouse button;<br>
  &nbsp Run - Shift;<br>
- &nbsp Switch Weapon - Mouse wheel.<br>
+ &nbsp Switch Weapon - Mouse wheel;<br>
+ &nbsp Pause - Esc.<br>
 </p>
