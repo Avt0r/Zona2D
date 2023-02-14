@@ -1,4 +1,4 @@
-<p> Language:  <a href ="https://github.com/Avt0r/Zona2D/edit/main/README.md">EN</a>, RU
+<p> Language:  <a href ="https://github.com/Avt0r/Zona2D/edit/blob/README.md">EN</a>, RU
  </p>
 <h1 align = "center">Zona2D</h1>
 <h3 align = "center">Выживай в Зоне</h2>
