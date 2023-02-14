@@ -3,7 +3,7 @@
 <h1 align = "center">Zona2D</h1>
 <h3 align = "center">Выживай в Зоне</h2>
 
-<p>Control: <br>
+<p>Управление: <br>
  &nbsp Передвижение - WASD;<br>
  &nbsp Перезарядка - R;<br>
  &nbsp Стрелять - ЛКМ;<br>
