@@ -430,7 +430,7 @@ GameObject:
   - component: {fileID: 6617211894108469237}
   - component: {fileID: 1982882777778120081}
   - component: {fileID: 5930172537216657624}
-  - component: {fileID: 8648571841876142128}
+  - component: {fileID: 4973865986688119690}
   - component: {fileID: 4808902536988853623}
   m_Layer: 0
   m_Name: Hand
@@ -520,11 +520,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 5
   anim: {fileID: 4808902536988853623}
-  attackDelay: 3
-  player: {fileID: 0}
-  inRadius: 0
---- !u!61 &8648571841876142128
-BoxCollider2D:
+  delayBeforeAttack: 2
+  target: {fileID: 0}
+--- !u!58 &4973865986688119690
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -536,19 +535,9 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.5781412, y: 0.4404893}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 10.24, y: 10.24}
-    newSize: {x: 10.24, y: 10.24}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Offset: {x: -0.0000038146973, y: 0}
   serializedVersion: 2
-  m_Size: {x: 9.083717, y: 9.359021}
-  m_EdgeRadius: 0
+  m_Radius: 5
 --- !u!95 &4808902536988853623
 Animator:
   serializedVersion: 4

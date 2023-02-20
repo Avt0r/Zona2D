@@ -31,7 +31,6 @@ public class Bullet : Projectile
 
     private void Start() {
         rb.velocity = transform.up * speed;
-        // rb.AddForce(transform.up * speed, ForceMode2D.Impulse);
         Destroy(gameObject, lifetime);
     }
 

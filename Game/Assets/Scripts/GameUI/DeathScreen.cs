@@ -5,9 +5,33 @@ using UnityEngine.SceneManagement;
 
 public class DeathScreen : MonoBehaviour
 {   
+    [SerializeField]
+    private GameObject ui;
+
+    private void Awake() {
+        GameUIManager.SHOWDEATHSCREEN += Show;
+    }
+
+    private void OnDestroy() {
+        GameUIManager.SHOWDEATHSCREEN -= Show;
+    }
 
     private void Start() {
-        gameObject.SetActive(false);
+        ui.SetActive(false);
+    }
+
+    private void OnEnable() {
+        StopTime();
+    }
+
+    private void OnDisable() {
+        ResumeTime();    
+    }
+
+    private void Show()
+    {
+        ui.SetActive(true);
+        StopTime();
     }
 
     public void StopTime()

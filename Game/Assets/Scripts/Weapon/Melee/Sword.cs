@@ -14,7 +14,7 @@ public class Sword : MonoBehaviour
     [SerializeField]
     private bool reloaded;
     [SerializeField]
-    private LayerMask enemy;
+    private LayerMask target;
     [SerializeField]
     private float attackRange;
     [SerializeField]
@@ -30,7 +30,7 @@ public class Sword : MonoBehaviour
     }
 
     private void OnEnable() {
-        WeaponManager.EDITINFOABOUTAMMO?.Invoke("Inf");
+        GameUIManager.INFOAMMO?.Invoke("Inf");
     }
 
     private void Reload()
@@ -40,7 +40,7 @@ public class Sword : MonoBehaviour
 
     private void DealDamage()
     {
-        Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, attackRange, enemy);
+        Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, attackRange, target);
         for(int i = 0; i < enemies.Length; i++)
         {
             enemies[i].GetComponent<Enemy>().TakeDamage(damage);

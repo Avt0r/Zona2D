@@ -31,13 +31,13 @@ public class Weapon : MonoBehaviour
     }
 
     private void OnEnable() {
-        WeaponManager.EDITINFOABOUTAMMO += AmmoInfoUpdate;
-        WeaponManager.RELOAD += ReloadWeapon;
+        GameUIManager.INFOAMMO += AmmoInfoUpdate;
+        //GameUIManager.RELOAD += ReloadWeapon;
     }
 
     private void OnDisable() {
-        WeaponManager.EDITINFOABOUTAMMO -= AmmoInfoUpdate;
-        WeaponManager.RELOAD -= ReloadWeapon;
+        GameUIManager.INFOAMMO -= AmmoInfoUpdate;
+        //GameUIManager.RELOAD -= ReloadWeapon;
     }
 
     private void AmmoInfoUpdate(string text)
@@ -47,7 +47,7 @@ public class Weapon : MonoBehaviour
 
     private void ReloadWeapon(float delay)
     {
-        reload.ReloadStart(delay);
+        //reload.ReloadStart(delay);
     }
 
 }

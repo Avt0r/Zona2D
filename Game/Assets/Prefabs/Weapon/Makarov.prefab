@@ -42,9 +42,11 @@ GameObject:
   m_Component:
   - component: {fileID: 2343343046085884706}
   - component: {fileID: 2343343046085884733}
-  - component: {fileID: 2343343046085884732}
-  - component: {fileID: 477602298752977109}
-  - component: {fileID: 8581653718465804786}
+  - component: {fileID: 3162879219643097325}
+  - component: {fileID: 5646088440856110931}
+  - component: {fileID: 8668397940122284209}
+  - component: {fileID: 8312657498771825637}
+  - component: {fileID: 4920870988770790572}
   - component: {fileID: 2343343046085884735}
   - component: {fileID: 2317571775467534815}
   m_Layer: 0
@@ -122,7 +124,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2343343046085884732
+--- !u!114 &3162879219643097325
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -131,33 +133,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 2343343046085884707}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8fcf5a71c43ff6647ab224567b1278ba, type: 3}
+  m_Script: {fileID: 11500000, guid: 077fe92578f706d4f9fe79f913ed43cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shotPoint: {fileID: 2343343046397936275}
-  anim: {fileID: 2343343046085884735}
-  damage: 6
-  ammo: {fileID: 477602298752977109}
-  bullet: {fileID: 1154053841651756976, guid: e89bbea6294a20c4395e2f0afbacd87f, type: 3}
---- !u!114 &477602298752977109
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2343343046085884707}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f7c33420df01b54dacc65e3e9ac2619, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ammoInClip: 8
-  ammoAll: 40
-  ammoInClipCurrent: 8
-  ammoAllCurrent: 8
-  reloadDelay: 0.5
+  properties: {fileID: 11400000, guid: 77ef8253e5f416646b14f2e0b2e22b82, type: 2}
+  ammoInClipCurrent: 0
+  ammoAllCurrent: 0
+  readyToShot: 0
   onReload: 0
---- !u!114 &8581653718465804786
+--- !u!114 &5646088440856110931
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -166,12 +150,51 @@ MonoBehaviour:
   m_GameObject: {fileID: 2343343046085884707}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 655fdc478a9e11342b9a6594cf700210, type: 3}
+  m_Script: {fileID: 11500000, guid: f099e6ea9dbec194eb0792968caf8ffd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: -5770376050941030129, guid: e89bbea6294a20c4395e2f0afbacd87f, type: 3}
+  shotPoint: {fileID: 0}
+--- !u!114 &8668397940122284209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2343343046085884707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ddbcd1512415e14f88b48a79073dc9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 0}
+--- !u!114 &8312657498771825637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2343343046085884707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7441d75d368eff64988d2a73a98a2e5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   audioShot: {fileID: 8300000, guid: 74737eae0cc7b9f44993517eb28cfa7f, type: 3}
   audioReload: {fileID: 8300000, guid: b8d914bc6e8219d48878b41bbfc82c70, type: 3}
-  source: {fileID: 2317571775467534815}
+  source: {fileID: 0}
+--- !u!114 &4920870988770790572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2343343046085884707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba21d38892f84404db61a441f904422e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &2343343046085884735
 Animator:
   serializedVersion: 4
