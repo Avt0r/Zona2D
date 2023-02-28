@@ -11,10 +11,16 @@ namespace Gun
     {
         [SerializeField, HideInInspector]
         private Animator anim;
+        [SerializeField, HideInInspector]
+        private int hashIdle;
+        [SerializeField, HideInInspector]
+        private int hashShot;
 
         private void Awake()
         {
             anim = GetComponent<Animator>();
+            hashIdle = Animator.StringToHash("Idle");
+            hashShot = Animator.StringToHash("Shot");
             Controller c = GetComponent<Controller>();
             c.shot += Shot;
             c.idle += Idle;
@@ -38,12 +44,12 @@ namespace Gun
 
         private void Shot()
         {
-            anim.Play("Shot");
+            anim.Play(hashShot);
         }
 
         private void Idle()
         {
-            anim.Play("Idle");
+            anim.Play(hashIdle);
         }
 
         private void ReloadStart()

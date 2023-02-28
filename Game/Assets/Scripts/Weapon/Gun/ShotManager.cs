@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace Gun
 {
+    [RequireComponent(typeof(Controller))]
     internal class ShotManager : MonoBehaviour
     {
         [SerializeField]

@@ -16,7 +16,7 @@ public class UIStates : MonoBehaviour
     [SerializeField]
     private Text ammo;
     [SerializeField]
-    private Reload reload;
+    private ReloadAnim.Controller _reload;
 
     private void OnEnable() {
         GameUIManager.INFOLEVEL += SendLevel;
@@ -65,11 +65,11 @@ public class UIStates : MonoBehaviour
 
     private void ReloadStart()
     {
-        reload.RStart();
+        _reload.StartAnimation();
     }
 
     private void ReloadStop()
     {
-        reload.RIdle();
+        _reload.StopAnimation();
     }
 }

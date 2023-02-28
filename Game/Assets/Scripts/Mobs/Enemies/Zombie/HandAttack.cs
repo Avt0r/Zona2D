@@ -42,7 +42,7 @@ public class HandAttack : MonoBehaviour
 
     private void DealDamage()
     {
-        target?.GetComponent<Player.Controller>().hurt?.Invoke(damage);
+        target?.GetComponent<Character.Controller>().hurt?.Invoke(damage);
     }
 
     private void Idle()

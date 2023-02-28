@@ -8,8 +8,6 @@ public class Weapon : MonoBehaviour
     [SerializeField]
     private Text ammoInfo;
     [SerializeField]
-    private Reload reload;
-    [SerializeField]
     private GameObject [] weapons;
 
     private void Start() {
@@ -32,22 +30,15 @@ public class Weapon : MonoBehaviour
 
     private void OnEnable() {
         GameUIManager.INFOAMMO += AmmoInfoUpdate;
-        //GameUIManager.RELOAD += ReloadWeapon;
     }
 
     private void OnDisable() {
         GameUIManager.INFOAMMO -= AmmoInfoUpdate;
-        //GameUIManager.RELOAD -= ReloadWeapon;
     }
 
     private void AmmoInfoUpdate(string text)
     {
         ammoInfo.text = text;
-    }
-
-    private void ReloadWeapon(float delay)
-    {
-        //reload.ReloadStart(delay);
     }
 
 }

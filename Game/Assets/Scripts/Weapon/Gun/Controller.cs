@@ -18,12 +18,12 @@ namespace Gun
         private bool readyToShot;
         [SerializeField, HideInInspector]
         private bool onReload;
-        internal Action shot;
-        internal Action makeShot;
-        internal Action idle;
-        internal Action reloadStart;
-        internal Action reloadStop;
-        internal Action<string> ammoInfo;
+        [SerializeField] internal Action shot;
+        [SerializeField] internal Action makeShot;
+        [SerializeField] internal Action idle;
+        [SerializeField] internal Action reloadStart;
+        [SerializeField] internal Action reloadStop;
+        [SerializeField] internal Action<string> ammoInfo;
 
         private void Awake()
         {

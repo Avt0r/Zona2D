@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44742592ea1d7854cb4c719a3aaf471c, type: 3}
+  m_Name: Item_ASVAL
+  m_EditorClassIdentifier: 
+  name: ASVAL
+  obj: {fileID: 4445595546523998557, guid: c1c9076197cec534f8373f513186bfbc, type: 3}
+  maxCount: 1
+  width: 1
+  height: 1
+  image: {fileID: 245807374, guid: 2352eccf4d962a640a9ed3a0f259102d, type: 3}

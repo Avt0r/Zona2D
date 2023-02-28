@@ -36,12 +36,14 @@ public class Enemy : MonoBehaviour
     private float minDistance;
     [SerializeField]
     private GameObject deathEffect;
-    
-    
+
+    private void Awake()
+    {
+       target = MobsManager.getPlayer().transform;
+       canvas.worldCamera = Camera.main; 
+    }
+
     private void Start() {
-       GameObject player = GameObject.FindGameObjectWithTag("Player");
-       target = player.transform;
-       canvas.worldCamera = Camera.main;
        HealthBarHide();
        XPObject.SetCount(XPCount);
     }
