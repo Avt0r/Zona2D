@@ -42,7 +42,6 @@ namespace Leo
                 yield return new WaitForSeconds(0.5f);
                 try
                 {
-                    owner = MobsManager.getPlayer().transform;
                     break;
                 }
                 catch (NullReferenceException){}

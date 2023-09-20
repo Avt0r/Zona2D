@@ -38,7 +38,6 @@ namespace CharacterComponents
         private void Awake()
         {
             states = GetComponent<States>();
-            MobsManager.getPlayer += GetMe;
         }
 
         private void OnEnable()
@@ -49,11 +48,6 @@ namespace CharacterComponents
         private void OnDisable()
         {
             readGazeDirection -= _weapon.SetDirection;
-        }
-
-        private void OnDestroy()
-        {
-            MobsManager.getPlayer -= GetMe;
         }
 
         private void Update()

@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/I2/Localization/Scripts/LanguageSource/LanguageSourceAsset.cs.meta
+guid: 2f0b0c553be8edd4682e9180fdd13e37
+=======
 guid: 318f24c04f8e496429da74cb98e0d393
+>>>>>>> Система ввода:Assets/Scripts/General/Spawn/SpawnManager.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

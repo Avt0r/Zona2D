@@ -39,7 +39,6 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
-       target = MobsManager.getPlayer().transform;
        canvas.worldCamera = Camera.main; 
     }
 
