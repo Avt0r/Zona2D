@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace SpawnSystem
 {
-    public interface Spawnable
+    public abstract class Spawnable : MonoBehaviour
     {
-        GameObject GetMe();
+        internal abstract void OnSpawn();
     }
 }

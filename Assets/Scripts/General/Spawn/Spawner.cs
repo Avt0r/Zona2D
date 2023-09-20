@@ -5,13 +5,16 @@ using UnityEngine;
 
 namespace SpawnSystem
 {
-    public class Spawner : MonoBehaviour
+    internal class Spawner : MonoBehaviour
     {
         [SerializeField] private Spawnable _object;
 
-        public void Spawn()
+        internal void Spawn(Vector3 point)
         {
-            Instantiate(_object.GetMe());
+
+            Instantiate(_object.gameObject, point, Quaternion.identity);
+
+            _object.OnSpawn();
         }
     }
 }
