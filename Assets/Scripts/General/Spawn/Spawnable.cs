@@ -2,17 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spawnable : MonoBehaviour
+namespace SpawnSystem
 {
-    // Start is called before the first frame update
-    void Start()
+    public interface Spawnable
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        GameObject GetMe();
     }
 }

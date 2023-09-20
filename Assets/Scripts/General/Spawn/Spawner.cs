@@ -1,18 +1,17 @@
+using SpawnSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spawner : MonoBehaviour
+namespace SpawnSystem
 {
-    // Start is called before the first frame update
-    void Start()
+    public class Spawner : MonoBehaviour
     {
-        
-    }
+        [SerializeField] private Spawnable _object;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public void Spawn()
+        {
+            Instantiate(_object.GetMe());
+        }
     }
 }

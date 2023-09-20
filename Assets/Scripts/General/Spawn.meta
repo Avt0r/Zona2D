@@ -1,6 +1,12 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/I2/Localization/Examples/Scenes/I2Localization    features Callbacks and Parameters.unity.meta
+guid: f6a59dc271eb27c4b888619b11923a66
+timeCreated: 1468127705
+licenseType: Store
+=======
 guid: c271613e4130a27459dff4c4e70b4247
 folderAsset: yes
+>>>>>>> Добавление спавнера для обьектов:Assets/Scripts/General/Spawn.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
